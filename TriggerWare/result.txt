@@ -1,0 +1,58 @@
+
+<FILE name="IQuery.cs">
+namespace Triggerware.Interfaces;
+
+/// <summary>
+///     Represents a raw query that can be executed by a Triggerware server.
+///     <para></para>
+///     Will Usually be constructed as either an <see cref="FolQuery" /> or <see cref="SqlQuery" />.
+/// </summary>
+public interface IQuery
+{
+    /// <summary>
+    /// A query string written in the specified language.
+    /// </summary>
+    public string Query { get; }
+    
+    /// <summary>
+    /// The language this query is written in, either "sql" or "fol".
+    /// </summary>
+    public string Language { get; }
+    
+    /// <summary>
+    /// The namespace of this query is written in.
+    /// </summary>
+    public string Schema { get; }
+}
+</FILE>
+<FILE name="IResourceRestricted.cs">
+namespace Triggerware.Interfaces;
+
+public interface IResourceRestricted
+{
+    /// <summary>
+    /// The maximum number of rows that can be returned by the server at one time.
+    /// </summary>
+    public uint? RowLimit { get; }
+    /// <summary>
+    /// A time limit for a query response.
+    /// </summary>
+    public double? Timeout { get; }
+}
+</FILE>
+<FILE name="ITriggerwareObject.cs">
+namespace Triggerware.Interfaces;
+
+public interface ITriggerwareObject
+{
+    /// <summary>
+    /// The <see cref="TriggerwareClient"/> this object is associated with.
+    /// </summary>
+    public TriggerwareClient Client { get; }
+    
+    /// <summary>
+    /// The handle of this object on the server. Null if not registered.
+    /// </summary>
+    public long? Handle { get; }
+}
+</FILE>
